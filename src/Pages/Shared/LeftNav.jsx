@@ -14,14 +14,14 @@ const LeftNav = () => {
       <h4>All Category</h4>
       <div className="ms-4 mt-4 ">
         {categories.map((category) => (
-          <h5 key={category.id} className="mt-4 ">
+          <h6 key={category.id} className="mt-3 ">
             <ActiveLink
-              to={`categories/${category.id}`}
+              to={`category/${category.id}`}
               className="text-decoration-none"
             >
               {category.name}
             </ActiveLink>
-          </h5>
+          </h6>
         ))}
       </div>
     </div>
