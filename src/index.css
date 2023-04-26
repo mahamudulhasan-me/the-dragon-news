@@ -26,3 +26,7 @@ body {
   text-align: center;
   padding: 5rem 0.8rem;
 }
+.activeLink {
+  color: black;
+  background-color: #e7e7e7;
+}
