@@ -1,8 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;500;600&display=swap");
 body {
   font-family: "Poppins", sans-serif;
 }
 .latest {
   background-color: #f3f3f3;
   padding: 0.8rem 0.5rem;
+}
+.socialIcon {
+  height: 40px;
+  width: 40px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: #f3f3f3;
+}
+.q-zone {
+  background-color: #f3f3f3;
+}
+.q-zone img {
+  margin-bottom: 1rem;
+}
+.amazing-add {
+  background-image: url("./assets/bg.png");
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding: 5rem 0.8rem;
 }
