@@ -11,12 +11,19 @@ import { AuthContext } from "../../provider/AuthProvider";
 import QZone from "./QZone";
 
 const RightNav = () => {
-  const { user, signInWithGoogle } = useContext(AuthContext);
+  const { user, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
         console.log(user);
+      })
+      .catch((err) => console.error(err));
+  };
+  const handleGithubSignIn = () => {
+    signInWithGithub()
+      .then((result) => {
+        const user = result.user;
       })
       .catch((err) => console.error(err));
   };
@@ -33,7 +40,11 @@ const RightNav = () => {
             >
               <FaGoogle className="me-1" /> Login With Google
             </Button>
-            <Button variant="outline-secondary" className="w-100">
+            <Button
+              variant="outline-secondary"
+              className="w-100"
+              onClick={handleGithubSignIn}
+            >
               <FaGithub className="me-1" />
               Login With GitHub
             </Button>

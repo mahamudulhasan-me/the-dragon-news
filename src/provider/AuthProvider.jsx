@@ -1,5 +1,6 @@
 import {
   getAuth,
+  GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
@@ -11,11 +12,16 @@ import app from "../firebase/firebase.config";
 export const AuthContext = createContext();
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider(auth);
+const githubProvider = new GithubAuthProvider(auth);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   //   handle signInWithGoogle
   const signInWithGoogle = () => {
     return signInWithPopup(auth, googleProvider);
+  };
+  //   handle signInWithGitHub
+  const signInWithGithub = () => {
+    return signInWithPopup(auth, githubProvider);
   };
   //handle signOut
   const logOut = () => {
@@ -30,6 +36,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     signInWithGoogle,
+    signInWithGithub,
     logOut,
   };
 
