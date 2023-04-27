@@ -11,7 +11,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import QZone from "./QZone";
 
 const RightNav = () => {
-  const { signInWithGoogle } = useContext(AuthContext);
+  const { user, signInWithGoogle } = useContext(AuthContext);
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
@@ -23,18 +23,22 @@ const RightNav = () => {
   return (
     <div>
       <div>
-        <h5>Login With</h5>
-        <Button
-          variant="outline-primary"
-          className="w-100 mb-3"
-          onClick={handleGoogleSignIn}
-        >
-          <FaGoogle className="me-1" /> Login With Google
-        </Button>
-        <Button variant="outline-secondary" className="w-100">
-          <FaGithub className="me-1" />
-          Login With GitHub
-        </Button>
+        {!user && (
+          <>
+            <h5>Login With</h5>
+            <Button
+              variant="outline-primary"
+              className="w-100 mb-3"
+              onClick={handleGoogleSignIn}
+            >
+              <FaGoogle className="me-1" /> Login With Google
+            </Button>
+            <Button variant="outline-secondary" className="w-100">
+              <FaGithub className="me-1" />
+              Login With GitHub
+            </Button>
+          </>
+        )}
       </div>
       <div className="mt-5">
         <h5>Find Us On</h5>

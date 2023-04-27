@@ -1,12 +1,17 @@
 import React, { useContext } from "react";
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Image, Nav, Navbar } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import ActiveLink from "./ActiveLink";
 
 const HeaderNav = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => console.error(err));
+  };
   return (
     <Container>
       <Navbar collapseOnSelect expand="lg">
@@ -18,12 +23,21 @@ const HeaderNav = () => {
             <ActiveLink to="/">Career</ActiveLink>
           </Nav>
           <Nav className="flex">
-            <Nav.Link href="#deets">
-              {user && <FaUserCircle style={{ fontSize: "2rem" }} />}
-            </Nav.Link>
+            {user && user.photoURL ? (
+              <>
+                <Image
+                  src={user.photoURL}
+                  style={{ height: "2rem", width: "2rem" }}
+                  roundedCircle
+                />{" "}
+                <p>{user.displayName}</p>
+              </>
+            ) : (
+              <FaUserCircle style={{ fontSize: "2rem" }} />
+            )}
 
             {user ? (
-              <Button variant="dark" className="px-4">
+              <Button variant="dark" className="px-4" onClick={handleLogOut}>
                 Logout
               </Button>
             ) : (

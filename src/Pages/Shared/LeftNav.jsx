@@ -19,7 +19,7 @@ const LeftNav = () => {
         {categories.map((category) => (
           <h6 key={category.id} className="mt-3 ">
             <ActiveLink
-              to={`category/${category.id}`}
+              to={`/category/${category.id}`}
               className="text-decoration-none"
             >
               {category.name}
