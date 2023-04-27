@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import editor1 from "../../assets/editorsInsight1.png";
+import editor2 from "../../assets/editorsInsight2.png";
+import editor3 from "../../assets/editorsInsight3.png";
+import EditorsInsight from "../News/EditorsInsight";
 import ActiveLink from "./ActiveLink";
-
 const LeftNav = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
@@ -23,6 +26,11 @@ const LeftNav = () => {
             </ActiveLink>
           </h6>
         ))}
+      </div>
+      <div>
+        <EditorsInsight image={editor1} />
+        <EditorsInsight image={editor3} />
+        <EditorsInsight image={editor2} />
       </div>
     </div>
   );
