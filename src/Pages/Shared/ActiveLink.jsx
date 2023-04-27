@@ -8,7 +8,7 @@ const ActiveLink = ({ to, children }) => {
       className={({ isActive }) =>
         isActive
           ? "activeLink"
-          : "text-decoration-none text-secondary text-center"
+          : "text-decoration-none text-secondary text-center mx-3"
       }
     >
       {children}
