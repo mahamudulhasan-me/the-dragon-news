@@ -6,6 +6,7 @@ import Category from "../Pages/Home/Category/Category";
 import Login from "../Pages/Login/Login";
 import News from "../Pages/News/News";
 import Register from "../Pages/Register/Register";
+import ProtectedRoute from "../protectedRoute/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +51,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: ":id",
-        element: <News />,
+        element: (
+          <ProtectedRoute>
+            <News />
+          </ProtectedRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/news/${params.id}`),
       },

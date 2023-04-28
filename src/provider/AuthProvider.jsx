@@ -1,8 +1,10 @@
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
@@ -23,6 +25,15 @@ const AuthProvider = ({ children }) => {
   const signInWithGithub = () => {
     return signInWithPopup(auth, githubProvider);
   };
+  // create new user by email and password
+  const createNewUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+  //handle signInWithEmailAndPassword
+  const logInWithEmailAndPassword = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
   //handle signOut
   const logOut = () => {
     return signOut(auth);
@@ -37,6 +48,8 @@ const AuthProvider = ({ children }) => {
     user,
     signInWithGoogle,
     signInWithGithub,
+    createNewUser,
+    logInWithEmailAndPassword,
     logOut,
   };
 

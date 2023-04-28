@@ -30,7 +30,7 @@ const HeaderNav = () => {
                   style={{ height: "2rem", width: "2rem" }}
                   roundedCircle
                 />{" "}
-                <p>{user.displayName}</p>
+                <p>{user.email}</p>
               </>
             ) : (
               <FaUserCircle style={{ fontSize: "2rem" }} />
