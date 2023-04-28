@@ -9,7 +9,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const path = location.state.pathname;
+  const path = location?.state?.pathname;
   const handleLogIn = (e) => {
     e.preventDefault();
     const form = e.target;
