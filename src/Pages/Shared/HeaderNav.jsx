@@ -33,7 +33,10 @@ const HeaderNav = () => {
                 <p>{user.email}</p>
               </>
             ) : (
-              <FaUserCircle style={{ fontSize: "2rem" }} />
+              <>
+                <p>{user?.email}</p>
+                <FaUserCircle style={{ fontSize: "2rem" }} />
+              </>
             )}
 
             {user ? (
