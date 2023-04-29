@@ -7,16 +7,12 @@ const Register = () => {
   const [password, setPassword] = useState(null);
   const [passError, setPassError] = useState("");
   const [showPass, setShowPass] = useState(false);
-  const [acceptCond, setAcceptCond] = useState(true);
+  const [acceptCond, setAcceptCond] = useState(false);
 
   const { createNewUser, updateUserProfile } = useContext(AuthContext);
   const handleCondition = (e) => {
     const isChecked = e.target.checked;
-    if (isChecked) {
-      setAcceptCond(!acceptCond);
-    } else {
-      setAcceptCond(!acceptCond);
-    }
+    setAcceptCond(isChecked);
   };
   const getEmail = (e) => {
     const email = e.target.value;
@@ -28,14 +24,13 @@ const Register = () => {
     const form = e.target;
     const name = form.name.value;
     const photoUrl = form.photoUrl.value;
-    console.log(photoUrl);
+
     createNewUser(email, password)
       .then((credential) => {
         const user = credential.user;
         e.target.reset();
         navigate("/");
         updateUserProfile(user, name, photoUrl);
-        console.log(user);
       })
       .catch((error) => setPassError(error.message));
   };
