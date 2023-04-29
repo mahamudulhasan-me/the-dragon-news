@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState(null);
@@ -10,8 +9,7 @@ const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const [acceptCond, setAcceptCond] = useState(true);
 
-  const { createNewUser } = useContext(AuthContext);
-
+  const { createNewUser, updateUserProfile } = useContext(AuthContext);
   const handleCondition = (e) => {
     const isChecked = e.target.checked;
     if (isChecked) {
@@ -27,12 +25,17 @@ const Register = () => {
   const navigate = useNavigate();
   const handleRegisterUser = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photoUrl = form.photoUrl.value;
+    console.log(photoUrl);
     createNewUser(email, password)
       .then((credential) => {
         const user = credential.user;
-        console.log(user);
         e.target.reset();
         navigate("/");
+        updateUserProfile(user, name, photoUrl);
+        console.log(user);
       })
       .catch((error) => setPassError(error.message));
   };
@@ -58,14 +61,18 @@ const Register = () => {
     <Container className="mx-auto w-25">
       <h3>Register Here</h3>
       <Form onSubmit={handleRegisterUser}>
-        {/* <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Your Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter your name" />
+          <Form.Control type="text" name="name" placeholder="Enter your name" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Photo Url</Form.Label>
-          <Form.Control type="text" placeholder="Paste your code" />
-        </Form.Group> */}
+          <Form.Control
+            type="text"
+            name="photoUrl"
+            placeholder="Paste your code"
+          />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control

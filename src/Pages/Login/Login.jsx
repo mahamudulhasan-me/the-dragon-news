@@ -18,9 +18,9 @@ const Login = () => {
     logInWithEmailAndPassword(email, password)
       .then((credential) => {
         const user = credential.user;
-        console.log(user);
         e.target.reset();
         navigate(path);
+        console.log(user);
       })
       .catch((err) => console.error(err));
   };
